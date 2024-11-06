@@ -1,0 +1,154 @@
+/* Global font setup */
+* {
+    box-sizing: border-box; /* Apply globally to all elements */
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #3498db;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-title {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Title styles */
+h1, h2, h3 { /* Assuming these are used for the titles */
+    margin-left: 30px; /* Increase left margin for titles */
+    margin-top: 20px; /* Add top margin for spacing */
+}
+
+/* Additional margins for specific sections */
+.all-pets-title, .best-matches-title { /* Add specific classes if needed */
+    margin-left: 30px; /* Set margin-left for all pets and best matches */
+    margin-top: 20px; /* Space above the titles */
+}
+
+/* Button styling */
+.quiz-button {
+    background-color: #3498db; /* Same background color as the navbar */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for better size */
+    font-size: 18px; /* Larger font size */
+    font-weight: 700; /* Bold font */
+    margin: 20px 0 20px 25px; /* Adjusted margin: top, right, bottom, left */
+    display: inline-block; /* Aligns it left with other content */
+    text-align: center; /* Center text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.quiz-button:hover {
+    background-color: #27ae60; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Pet Container Styling */
+.pet-container {
+    width: calc(100% - 40px); /* Full width minus side margins */
+    margin: 20px auto; /* Center the container and add top/bottom margin */
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    align-items: flex-start; /* Aligns cards to the left */
+}
+
+/* Pet Card Styles */
+.pet-card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px; /* Reduced padding for the card */
+    align-items: flex-start;
+    width: 100%; /* Ensures the card fills the container width */
+    margin-bottom: 10px; /* Reduced bottom margin */
+    box-sizing: border-box;
+    justify-content: space-between; /* Space out the image and details */
+}
+
+.pet-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    margin-right: 10px; /* Reduced margin */
+}
+
+.pet-details {
+    flex: 1; /* Allow details to take up remaining space */
+}
+
+.pet-name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none; /* Remove underline */
+}
+
+.pet-description {
+    margin-top: 5px; /* Reduced top margin */
+    color: #555;
+    font-weight: 400;
+}
+
+/* Pet Tags Styling */
+.pet-tags {
+    display: flex;
+    flex-direction: row; /* Align tags horizontally */
+    margin-top: 5px; /* Margin between description and tags */
+}
+
+.tag {
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 5px; /* Increased border radius for a more rounded appearance */
+    padding: 4px 8px; /* Reduced padding */
+    margin-right: 4px; /* Reduced margin between tags */
+    display: inline-block; /* Allows margin to be applied */
+    font-size: 14px; /* Font size for tags */
+}
+
+/* No Results Message Styling */
+.no-results-message {
+    margin: 20px 0; /* Add margin above and below */
+    text-align: center; /* Center the text */
+    font-size: 18px; /* Font size for the message */
+    color: #888; /* Gray color for the message */
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption Matchmaking Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-title">Pet Adoption Matchmaking Portal</a>
+        <form id="search-form" class="search-form">
+            <input type="text" id="search-input" placeholder="Search pets..." class="search-input">
+            <button type="submit" class="search-button">
+                <img src="./images/search-icon.png" alt="Search" class="search-icon">
+            </button>
+        </form>
+    </nav>
+
+    <button id="quiz-button" class="quiz-button">Find Your Perfect Pet Match!</button>
+
+    <h2 class="best-matches-title">Best Matches</h2>
+    <div class="pet-container" id="pet-container"></div>
+
+    <h2 class="all-pets-title">All Pets</h2>
+    <div class="pet-container" id="all-pets-container"></div>
+
+    <script>class Pet {
+  constructor(name, description, imageSource, tags, link, active = true) {
+    this.name = name;
+    this.description = description;
+    this.imageSrc = imageSource;
+    this.tags = tags || [];
+    this.link = link;
+    this.active = active;
+  }
+
+  createCard() {
+    const card = document.createElement('div');
+    card.classList.add('pet-card');
+
+    const img = document.createElement('img');
+    img.src = this.imageSrc; // Ensure the correct image source
+    img.alt = this.name;
+    img.classList.add('pet-image');
+
+    const details = document.createElement('div');
+    details.classList.add('pet-details');
+
+    const petName = document.createElement('h2');
+    petName.classList.add('pet-name');
+    petName.innerHTML = `<a href="${this.link}">${this.name}</a>`;
+
+    const petDescription = document.createElement('p');
+    petDescription.classList.add('pet-description');
+    petDescription.textContent = this.description;
+
+    const petTags = document.createElement('div');
+    petTags.classList.add('pet-tags');
+    for (const tag of this.tags) {
+      const tagElement = document.createElement('span');
+      tagElement.classList.add('tag');
+      tagElement.textContent = tag;
+      petTags.append(tagElement);
+    }
+
+    details.append(petName, petDescription, petTags);
+    card.append(img, details);
+
+    return card;
+  }
+}
+
+      const pets = [
+        new Pet(
+    'Benny',
+    'Loyal and intelligent, Benny currently enjoys field runs and afternoon hikes.',
+    './images/benny.webp',
+    ['Dog', 'Boy', 'Shiba Inu'],
+    'pages/benny.html'
+        ),
+  new Pet(
+    'Luna',
+    'Luna loves belly rubs, butt scratches, and naps with friends.',
+    './images/luna.jpeg',
+    ['Dog', 'Girl', 'German Shepherd'],
+    './pages/luna.html'
+  ),
+        new Pet(
+    'Max',
+    'Max is a bundle of joy, perfect for outdoor adventures.',
+    './images/max.jpg',
+    ['Dog', 'Girl', 'Golden Retriever'],
+    './pages/max.html'
+        ),
+  new Pet(
+    'Bella',
+    'Bella loves her meals and is eager to please during training.',
+    './images/bella.jpg',
+    ['Dog', 'Girl', 'Poodle'],
+    './pages/bella.html'
+  ),
+        new Pet(
+    'Zoe',
+    'Zoe is playful and curious, enjoying her time in her little home.',
+    './images/zoe.webp',
+    ['Hamster', 'Girl'],
+    './pages/zoe.html'
+  ),
+        new Pet(
+    'Pico',
+    'Pico loves to talk and will be your lively companion.',
+    './images/pico.jpg',
+    ['Parrot', 'Boy', 'Bird'],
+    './pages/pico.html'
+  ),
+        new Pet(
+    'Lily',
+    'Lily is a sweet rabbit who loves to hop around and play.',
+    './images/lily.webp',
+    ['Rabbit', 'Girl'],
+    './pages/lily.html'
+  ),
+        new Pet(
+    'Nala',
+    'Nala is a playful kitten who loves to chase toys.',
+    './images/nala.jpg',
+    ['Cat', 'Girl'],
+    './pages/nala.html'
+        ),
+  new Pet(
+    'Rocky',
+    'Rocky is a friendly guinea pig who enjoys munching on veggies.',
+    './images/rocky.jpg',
+    ['Guinea Pig', 'Boy'],
+    './pages/rocky.html',
+    false
+  ),
+        new Pet(
+    'Daisy',
+    'Daisy is an inactive dog who enjoys lounging in the sun.',
+    './images/daisy.jpg',
+    ['Dog', 'Inactive', 'Girl', 'Bulldog'],
+    './pages/daisy.html',
+    false
+  ),
+        new Pet(
+    'Whiskers',
+    'Whiskers is an inactive cat that loves to nap all day.',
+    './images/whiskers.jpg',
+    ['Cat', 'Inactive', 'Boy'],
+    './pages/whiskers.html',
+    false
+  ),
+        new Pet(
+    'Fluffy',
+    'Fluffy is an inactive rabbit that enjoys peaceful moments.',
+    './images/fluffy.webp',
+    ['Rabbit', 'Inactive', 'Girl'],
+    './pages/fluffy.html',
+    false
+        ),
+  new Pet(
+    'Squeaky',
+    'Squeaky is an inactive hamster that prefers to stay cozy.',
+    './images/squeaky.jpg',
+    ['Hamster', 'Inactive', 'Boy'],
+    './pages/squeaky.html',
+    false
+  ),
+        new Pet(
+    'Chirpy',
+    'Chirpy is an inactive bird that likes to perch and watch.',
+    './images/chirpy.jpg',
+    ['Bird', 'Inactive', 'Boy', 'Parrot'],
+    './pages/chirpy.html',
+    false
+        )
+];
+
+function displayBestMatches() {
+  const container = document.querySelector('#pet-container');
+  const petMatches = JSON.parse(localStorage.getItem('petMatches')) || [];
+
+  container.innerHTML = ''; // Clear any previous matches
+
+  for (const match of petMatches) {
+    const matchCard = new Pet(
+      match.name,
+      match.description,
+      match.imageSrc, // Correctly using the saved image source
+      match.tags || [],
+      match.link,
+      match.active
+    ).createCard();
+    container.append(matchCard);
+  }
+
+  if (petMatches.length === 0) {
+    container.innerHTML = '<p class="no-results-message">No matches found</p>';
+  }
+}
+
+      function displayAllPets() {
+        const allPetsContainer = document.querySelector('#all-pets-container');
+        allPetsContainer.innerHTML = ''; // Clear any previous entries
+
+        for (const pet of pets) {
+    const allCard = pet.createCard();
+    allPetsContainer.append(allCard);
+  }
+      }
+
+      document.querySelector('#quiz-button').addEventListener('click', function () {
+        window.location.href = 'quiz.html';
+      });
+document
+  .querySelector('#search-form')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+    const query = document.querySelector('#search-input').value.toLowerCase();
+    const filteredPets = pets.filter(
+      pet =>
+        pet.name.toLowerCase().includes(query) ||
+              pet.description.toLowerCase().includes(query) ||
+        pet.tags.some(tag => tag.toLowerCase().includes(query))
+    );
+
+    const allPetsContainer = document.querySelector('#all-pets-container');
+    allPetsContainer.innerHTML = '';
+
+    for (const pet of filteredPets) {
+      const petCard = pet.createCard();
+      allPetsContainer.append(petCard);
+    }
+
+    if (filteredPets.length === 0) {
+            allPetsContainer.innerHTML =
+        '<p class="no-results-message">No pets found</p>';
+    }
+  });
+
+document.addEventListener('DOMContentLoaded', function () {
+  displayBestMatches();
+  displayAllPets();
+});
+    </script>
+</body>
+</html>

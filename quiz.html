@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Match Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .quiz-question {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .quiz-option {
+            margin-bottom: 10px;
+        }
+
+        .quiz-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .quiz-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-title">Pet Adoption Matchmaking Portal</a>
+    </nav>
+
+    <div class="quiz-container">
+        <h1>Find Your Perfect Pet Match!</h1>
+
+        <div class="quiz-question">1. Which type of pet are you most interested in?</div>
+        <div class="quiz-option">
+            <label><input type="radio" name="petType" value="dog"> Dog</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="petType" value="cat"> Cat</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="petType" value="guineaPig"> Guinea Pig</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="petType" value="hamster"> Hamster</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="petType" value="bird"> Bird</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="petType" value="rabbit"> Rabbit</label>
+        </div>
+
+        <div class="quiz-question">2. How active is your lifestyle?</div>
+        <div class="quiz-option">
+            <label><input type="radio" name="active" value="yes"> Very Active</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="active" value="no"> Not Very Active</label>
+        </div>
+
+        <div class="quiz-question">3. Do you have children or other family members at home?</div>
+        <div class="quiz-option">
+            <label><input type="radio" name="family" value="yes"> Yes</label>
+        </div>
+        <div class="quiz-option">
+            <label><input type="radio" name="family" value="no"> No</label>
+        </div>
+
+        <button class="quiz-button" id="submit-button">Find My Match!</button>
+        <div class="result" id="result"></div>
+    </div>
+
+<script>document.querySelector('#submit-button').addEventListener('click', function () {
+  const petType = document.querySelector('input[name="petType"]:checked');
+  const active = document.querySelector('input[name="active"]:checked');
+  const family = document.querySelector('input[name="family"]:checked');
+
+  if (!petType || !active || !family) {
+      alert('Please answer all questions before submitting!');
+      return;
+  }
+
+  // Define all pets with their attributes, including imageSrc
+  const allPets = [
+      {
+        name: 'Benny',
+        description:
+        'Loyal and intelligent, Benny currently enjoys field runs and afternoon hikes.',
+        type: 'dog',
+        active: true,
+        familyFriendly: true,
+        imageSrc: './images/benny.webp',
+        tags: ['Dog', 'Boy', 'Shiba Inu']
+      },
+      {
+        name: 'Luna',
+        description:
+        'Luna loves belly rubs, butt scratches, and naps with friends.',
+        type: 'dog',
+        active: true,
+        familyFriendly: true,
+        imageSrc: './images/luna.jpeg',
+        tags: ['Dog', 'Girl', 'German Shepherd']
+      },
+      {
+        name: 'Max',
+        description: 'Max is a bundle of joy, perfect for outdoor adventures.',
+        type: 'dog',
+        active: true,
+        familyFriendly: false,
+        imageSrc: './images/max.jpg',
+        tags: ['Dog', 'Girl', 'Golden Retriever']
+      },
+      {
+        name: 'Bella',
+        description:
+          'Bella loves her meals and is eager to please during training.',
+        type: 'dog',
+        active: true,
+        familyFriendly: false,
+        imageSrc: './images/bella.jpg',
+        tags: ['Dog', 'Girl', 'Poodle']
+      },
+      {
+        name: 'Nala',
+        description: 'Nala is a playful kitten who loves to chase toys.',
+        type: 'cat',
+        active: true,
+        familyFriendly: false,
+        imageSrc: './images/nala.jpg',
+        tags: ['Cat', 'Girl']
+      },
+      {
+        name: 'Rocky',
+        description:
+          'Rocky is a friendly guinea pig who enjoys munching on veggies.',
+        type: 'guineaPig',
+        active: true,
+        familyFriendly: true,
+        imageSrc: './images/rocky.jpg',
+        tags: ['Guinea Pig', 'Boy']
+      },
+      {
+        name: 'Zoe',
+        description:
+          'Zoe is playful and curious, enjoying her time in her little home.',
+        type: 'hamster',
+        active: true,
+        familyFriendly: false,
+        imageSrc: './images/zoe.webp',
+        tags: ['Hamster', 'Girl']
+      },
+      {
+        name: 'Pico',
+        description: 'Pico loves to talk and will be your lively companion.',
+        type: 'bird',
+        active: true,
+        familyFriendly: false,
+        imageSrc: './images/pico.jpg',
+        tags: ['Parrot', 'Boy', 'Bird']
+      },
+      {
+        name: 'Lily',
+        description: 'Lily is a sweet rabbit who loves to hop around and play.',
+        type: 'rabbit',
+        active: true,
+        familyFriendly: true,
+        imageSrc: './images/lily.webp',
+        tags: ['Rabbit', 'Girl']
+      },
+      {
+        name: 'Daisy',
+        description: 'Daisy is an inactive dog who enjoys lounging in the sun.',
+        type: 'dog',
+        active: false,
+        familyFriendly: true,
+        imageSrc: './images/daisy.jpg',
+        tags: ['Dog', 'Inactive', 'Girl', 'Bulldog']
+      },
+      {
+        name: 'Whiskers',
+        description: 'Whiskers is an inactive cat that loves to nap all day.',
+        type: 'cat',
+        active: false,
+        familyFriendly: false,
+        imageSrc: './images/whiskers.jpg',
+        tags: ['Cat', 'Inactive', 'Boy']
+      },
+      {
+        name: 'Fluffy',
+        description: 'Fluffy is an inactive rabbit that enjoys peaceful moments.',
+        type: 'rabbit',
+        active: false,
+        familyFriendly: true,
+        imageSrc: './images/fluffy.webp',
+        tags: ['Rabbit', 'Inactive', 'Girl']
+      },
+      {
+        name: 'Squeaky',
+        description: 'Squeaky is an inactive hamster that prefers to stay cozy.',
+        type: 'hamster',
+        active: false,
+        familyFriendly: true,
+        imageSrc: './images/squeaky.jpg',
+        tags: ['Hamster', 'Inactive', 'Boy']
+      },
+      {
+        name: 'Chirpy',
+        description: 'Chirpy is an inactive bird that likes to perch and watch.',
+        type: 'bird',
+        active: false,
+        familyFriendly: true,
+        imageSrc: './images/chirpy.jpg',
+        tags: ['Bird', 'Inactive', 'Boy']
+      }
+  ];
+
+  // Filter based on selected pet type and activity level only
+  const matches = allPets.filter(
+      pet => pet.type === petType.value && pet.active === (active.value === 'yes')
+  );
+
+  // Store matches in localStorage to access on the homepage
+  localStorage.setItem('petMatches', JSON.stringify(matches));
+
+  // Redirect to homepage
+  window.location.href = 'index.html';
+});
+</script>
+
+
+
+
+</body>
+</html>
