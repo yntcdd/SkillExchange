@@ -152,3 +152,101 @@ h1, h2, h3 { /* Assuming these are used for the titles */
     font-size: 18px; /* Font size for the message */
     color: #888; /* Gray color for the message */
 }
+
+/* Footer Styles */
+.footer {
+    background-color: #3498db; /* Dark blue background */
+    color: #ffffff;
+    padding: 40px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-column h3 {
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: #b3e5ff; /* Light blue link color */
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+    color: #ffffff; /* Hover to white */
+}
+
+.footer-bottom {
+    border-top: 1px solid #004080; /* Slightly lighter blue border */
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #b3e5ff;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    margin: 0 8px;
+    filter: brightness(0) invert(1); /* Makes icons white */
+    transition: filter 0.3s ease;
+}
+
+.social-icons a:hover img {
+    filter: brightness(0.8) invert(1); /* Darker on hover */
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.newsletter-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    max-width: 250px; /* Optional: adjust the width as needed */
+    max-height: 200px;
+    margin-top: 20px;
+    margin-left: 50px;
+    text-align: center;
+    color: #333; /* Text color for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+}
+
+.signup-button {
+    background-color: #007BFF; /* Same blue as "Find Your Match" button */
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signup-button:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+}
