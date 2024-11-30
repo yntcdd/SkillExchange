@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Specific styles for the FAQ page */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-container h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .faq {
+            margin-bottom: 15px;
+        }
+
+        .faq h2 {
+            font-size: 1.25em;
+            color: #007bff;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .faq p {
+            display: none;
+            font-size: 1em;
+            color: #555;
+            padding: 0 10px;
+            margin: 0;
+            border-left: 3px solid #007bff;
+        }
+
+        .faq p.visible {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #3498db;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./index.html" class="navbar-title">Pet Adoption Matchmaking Portal</a>
+    </nav>
+
+    <div class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+
+        <div class="faq">
+            <h2>1. What is the Pet Adoption Matchmaking Portal?</h2>
+            <p>Our portal helps connect potential pet owners with their perfect furry (or feathered!) companion using advanced matchmaking tools.</p>
+        </div>
+
+        <div class="faq">
+            <h2>2. How do I adopt a pet?</h2>
+            <p>Simply browse our available pets, take the compatibility quiz, and contact the shelter or owner directly through the pet’s profile page.</p>
+        </div>
+
+        <div class="faq">
+            <h2>3. What types of pets are available for adoption?</h2>
+            <p>We feature a wide range of pets, including dogs, cats, rabbits, birds, hamsters, and more!</p>
+        </div>
+
+        <div class="faq">
+            <h2>4. Is there a fee to adopt a pet?</h2>
+            <p>Adoption fees vary by shelter and the type of pet. All fees are listed on the pet’s profile page.</p>
+        </div>
+
+        <div class="faq">
+            <h2>5. Can I return a pet if it doesn’t work out?</h2>
+            <p>Each shelter has its own policy regarding returns. Please check the shelter’s terms before adopting.</p>
+        </div>
+
+        <div class="faq">
+            <h2>6. How do I know if a pet is family-friendly?</h2>
+            <p>Our pet profiles indicate whether a pet is suitable for families with children. You can also filter pets using our quiz.</p>
+        </div>
+
+        <div class="faq">
+            <h2>7. How can I contact you for more help?</h2>
+            <p>Visit our <a href="contact-us.html">Contact Us</a> page to send us a message or view our support options.</p>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Pet Adoption Matchmaking Portal. All rights reserved.
+    </footer>
+
+    <script>// JavaScript for FAQ toggle
+      const faqs = document.querySelectorAll('.faq h2');
+      for (const faq of faqs) {
+  faq.addEventListener('click', () => {
+    const answer = faq.nextElementSibling;
+    answer.classList.toggle('visible');
+  });
+}
+    </script>
+</body>
+</html>
